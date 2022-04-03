@@ -3,7 +3,7 @@
 #   the Readme.md first
 # - All functions are commented to facilitate their modification if required
 
-def repeat($N):
+def repeat_obj($N):
 # @input
 #   JSON OBJECT
 # @description
