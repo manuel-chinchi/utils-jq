@@ -21,15 +21,13 @@ def repeat_obj($N):
             [.] # convert to list
             |
             . += [ $obj ] # add item
-            |
-            repeat($N - 1) # repeat function ..
         else # == "array"
             .[0] as $obj # get first item
             |
             . += [ $obj ] # add item
-            |
-            repeat($N - 1) # repeat function ..
         end
+        |
+        repeat_obj($n - 1) # repeat function..
     else
         if type == "object" then
             .
