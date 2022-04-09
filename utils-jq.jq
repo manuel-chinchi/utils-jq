@@ -3,18 +3,18 @@
 #   the Readme.md first
 # - All functions are commented to facilitate their modification if required
 
-def repeat_obj($N):
+def repeat_obj($n):
 # @input
 #   JSON OBJECT
 # @description
-#   Repeat an JSON OBJECT an amount of times indicated by $N and returns a LIST (plain)
+#   Repeat an JSON OBJECT an amount of times indicated by $n and returns a LIST (plain)
 #   with the number of total objects.
 # @output
 #   JSON OBJECT/s
 # @notes
 #   Recursive type function.
 # ----------------------------------------------------------------------------------------
-    if $N > 0 then
+    if $n > 0 then
         if type == "object" then
             . as $obj
             |
