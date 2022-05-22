@@ -15,19 +15,12 @@ def mod($n):
     if  $n < 0 then (-1)*$n else $n end
     ;
 
-
-
-def repeat_obj($n):
-# @input
-#   OBJECT
-# @description
-#   Repeat an OBJECT an amount of times indicated by $n and returns a LIST (plain)
-#   with the number of total objects.
-# @output
-#   OBJECT/s
-# @note
-#   Recursive function.
 # ----------------------------------------------------------------------------------------
+# @public Repeat an OBJECT an amount of times indicated by $n and returns a LIST (plain) with the number of total objects. 
+# @param {object} Object to copy
+# @return {object|Array<object>}
+# @note Recursive function
+def repeat_obj($n):
     if $n > 0 then
         if type == "object" then
             . as $obj
@@ -57,14 +50,11 @@ def repeat_obj($n):
 #   Most of these functions use JQ native functions.
 # ========================================================================================
 
-def is_leap_year($year):
-# @input
-#   INTEGER
-# @description
-#   Verify if a given year is leap.
-# @output
-#   INTEGER
 # ----------------------------------------------------------------------------------------
+# @public Verify if a given year is leap.
+# @param {number} $year Year
+# @return {boolean}
+def is_leap_year($year):
     if ( ($year % 4 == 0 and $year % 100 != 0 ) or ($year % 400 == 0) ) then
         true
     else
@@ -72,14 +62,13 @@ def is_leap_year($year):
     end
     ;
 
-def check_date($day; $month; $year):
-# @input
-#   INTEGER, INTEGER, INTEGER
-# @description
-#   Check if a given date is valid.
-# @output
-#   BOOLEAN
 # ----------------------------------------------------------------------------------------
+# @public Check if a given date is valid.
+# @param {number} $day Day
+# @param {number} $month Month
+# @param {number} $year Year
+# @return {boolean}
+def check_date($day; $month; $year):
     [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] as $days_of_month
     |
     [ range(1; 13) ] as $months_of_year
@@ -213,23 +202,24 @@ def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
 #   Most of these functions use JQ native functions.
 # ========================================================================================
 
-def sreplace_all($old_sub; $new_sub):
-# @description
-#   Replaces all the appearances of a subcadene on another inside an initial chain.
 # ----------------------------------------------------------------------------------------
+# @public Replaces all the appearances of a subcadene on another inside an initial chain.
+# @param {string} $old_sub Old string 
+# @param {string} $new_sub New string to replace
+def sreplace_all($old_sub; $new_sub):
     gsub($old_sub; $new_sub)
     ;
 
-def sremove_all($sub):
-# @description
-#   Remove all the appearances of a subcadence within another initial chain.
 # ----------------------------------------------------------------------------------------
+# @public Remove all the appearances of a subcadence within another initial chain.
+# @param {string} $sub Sub string 
+def sremove_all($sub):
     gsub($sub; "")
     ;
 
-def instr($sub):
-# @description
-#   Returns the position of the first appearance of a subcadence within another.
 # ----------------------------------------------------------------------------------------
+# @public Returns the position of the first appearance of a subcadence within another.
+# @param {string} $sub Sub string  
+def instr($sub):
     index($sub)
     ;
