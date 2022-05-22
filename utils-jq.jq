@@ -1,6 +1,6 @@
 # @file: utils-jq.jq
 # @autor: Manuel Chinchi
-# @version: 1.0.10
+# @version: 1.0.11
 # 
 # jq module with various useful functions
 
@@ -15,11 +15,22 @@
 # ========================================================================================
 
 def return($v):
-    $v;
+    $v
+    ;
 
 def mod($n):
-    if  $n < 0 then (-1)*$n else $n end
+    if $n < 0 then (-1)*$n else $n end
     ;
+
+#TODO bassed in version of https://github.com/stedolan/jq/blob/master/src/builtin.jq#L160
+def whileex($cond; $returns):
+    def _whileex:
+        if $cond then
+            $returns
+        else
+            empty
+        end;
+    _whileex;
 
 # ----------------------------------------------------------------------------------------
 # @public Repeat an OBJECT an amount of times indicated by $n and returns a LIST (plain) with the number of total objects. 
@@ -31,9 +42,9 @@ def repeat_obj($n):
         if type == "object" then
             . as $obj
             |
-            [.] # convert to list
+            [.]
             |
-            . += [ $obj ] # add item
+            . += [ $obj ]
         else # == "array"
             .[0] as $obj # get first item
             |
