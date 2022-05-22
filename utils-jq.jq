@@ -15,12 +15,14 @@
 # ========================================================================================
 
 def return($v):
-    $v
-    ;
+    $v;
 
 def mod($n):
-    if $n < 0 then (-1)*$n else $n end
-    ;
+    if $n < 0 then
+        (-1) * $n
+    else
+        $n
+    end;
 
 #TODO bassed in version of https://github.com/stedolan/jq/blob/master/src/builtin.jq#L160
 def whileex($cond; $returns):
@@ -34,34 +36,29 @@ def whileex($cond; $returns):
 
 #TODO use 'types' because 'type' is a reserved word.
 def filter($types):
-    whileex(. != $types and (. | type) != $types; .)
-    ;
+    whileex(. != $types and (. | type) != $types; .);
 
 def filter($type1; $type2):
     whileex(. != $type1 and (. | type) != $type1; .) |
-    whileex(. != $type2 and (. | type) != $type2; .)
-    ;
+    whileex(. != $type2 and (. | type) != $type2; .);
 
 def filter($type1; $type2; $type3):
     whileex(. != $type1 and (. | type) != $type1; .) |
     whileex(. != $type2 and (. | type) != $type2; .) |
-    whileex(. != $type3 and (. | type) != $type3; .)
-    ;
+    whileex(. != $type3 and (. | type) != $type3; .);
 
 def filter($type1; $type2; $type3; $type4):
     whileex(. != $type1 and (. | type) != $type1; .) |
     whileex(. != $type2 and (. | type) != $type2; .) |
     whileex(. != $type3 and (. | type) != $type3; .) |
-    whileex(. != $type4 and (. | type) != $type4; .)
-    ;
+    whileex(. != $type4 and (. | type) != $type4; .);
 
 def filter($type1; $type2; $type3; $type4; $type5):
     whileex(. != $type1 and (. | type) != $type1; .) |
     whileex(. != $type2 and (. | type) != $type2; .) |
     whileex(. != $type3 and (. | type) != $type3; .) |
     whileex(. != $type4 and (. | type) != $type4; .) |
-    whileex(. != $type5 and (. | type) != $type5; .)
-    ;
+    whileex(. != $type5 and (. | type) != $type5; .);
 
 # ----------------------------------------------------------------------------------------
 # @public Repeat an OBJECT an amount of times indicated by $n and returns a LIST (plain) with the number of total objects. 
@@ -89,8 +86,7 @@ def repeat_obj($n):
         else # == "array"
             .[]
         end
-    end
-    ;
+    end;
 
 # ========================================================================================
 # Date functions
@@ -107,8 +103,7 @@ def is_leap_year($year):
         true
     else
         false
-    end
-    ;
+    end;
 
 # ----------------------------------------------------------------------------------------
 # @public Check if a given date is valid.
@@ -137,8 +132,7 @@ def check_date($day; $month; $year):
         end
     else
         false
-    end
-    ;
+    end;
 
 #TODO use 'ends' because 'end' is a reserved word.
 def days_between_years($year1; $year2):
@@ -168,8 +162,7 @@ def days_between_years($year1; $year2):
             |
             return (add) # sum all items of array
         end
-    ) | .
-    ;
+    );
 
 def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
     (
@@ -239,8 +232,7 @@ def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
                 $day2
             )
         )
-    end
-    ;
+    end;
 
 
 
@@ -255,19 +247,16 @@ def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
 # @param {string} $old_sub Old string 
 # @param {string} $new_sub New string to replace
 def sreplace_all($old_sub; $new_sub):
-    gsub($old_sub; $new_sub)
-    ;
+    gsub($old_sub; $new_sub);
 
 # ----------------------------------------------------------------------------------------
 # @public Remove all the appearances of a subcadence within another initial chain.
 # @param {string} $sub Sub string 
 def sremove_all($sub):
-    gsub($sub; "")
-    ;
+    gsub($sub; "");
 
 # ----------------------------------------------------------------------------------------
 # @public Returns the position of the first appearance of a subcadence within another.
 # @param {string} $sub Sub string  
 def instr($sub):
-    index($sub)
-    ;
+    index($sub);
