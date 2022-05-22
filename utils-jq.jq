@@ -1,3 +1,9 @@
+# @file: utils-jq.jq
+# @autor: Manuel Chinchi
+# @version: 1.0.10
+# 
+# jq module with various useful functions
+
 # IMPORTANT!
 # - In order to use the functions and call them in the terminal make sure you read 
 #   the Readme.md first
