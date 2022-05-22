@@ -89,6 +89,109 @@ def check_date($day; $month; $year):
     end
     ;
 
+#TODO use 'ends' because 'end' is a reserved word.
+def days_between_years($year1; $year2):
+    (
+        if $year1 == $year2 then
+            return (0)
+        else
+            (
+                if $year1 < $year2 then
+                    return ({ init: $year1, ends: $year2 })
+                elif $year1 > $year2 then
+                    return ({ init: $year2, ends: $year1 })
+                else
+                    null
+                end
+            ) as $years
+            |
+            [
+                range($years.init; $years.ends) as $year
+                |
+                if is_leap_year($year) then
+                    return (366)
+                else
+                    return (365)
+                end
+            ]
+            |
+            return (add) # sum all items of array
+        end
+    ) | .
+    ;
+
+def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
+    (
+        if is_leap_year($year1) == true then
+            return ([31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31])
+        else
+            return ([31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31])
+        end
+    ) as $days_of_month1
+    |
+    mod($year1 - $year2) as $diff_years
+    |
+    mod($month1 - $month2) as $diff_months
+    |
+    if $diff_years == 0 then
+        if $diff_months == 0 then
+            return (mod($day1 - $day2))
+        else
+            return
+            (
+                # remaining days of the 'month1'
+                (
+                    # [ range($day1; $days_of_month1[ ($month1 - 1) ] + 1) ] | length
+                    $days_of_month1[ ($month1 - 1) ] - $day1
+                ) +
+                # days between months 'month1' + 1 and 'month2'
+                (
+                    $days_of_month1[$month1 + 1: $month2] + [0] | add
+                ) +
+                #  days from the 1st of the month until 'day2'
+                (
+                    $day2
+                )
+            )
+        end
+    else
+        (
+            if is_leap_year($year2) == true then
+                return ([31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31])
+            else
+                return ([31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31])
+            end
+        ) as $days_of_month2
+        |
+        return
+        (
+            # remaining days of the 'month1'
+            (
+                # [ range($day1 + 1; $days_of_month1[ ($month1 - 1) ]) ] + [0] | length
+                $days_of_month1[ ($month1 - 1) ] - $day1
+            ) +
+            # days of months remaining from 'month1' + 1
+            (
+                $days_of_month1[$month1:] + [0] | add
+            ) +
+            # days between years (if the difference in years is greater than 1) 
+            (
+                days_between_years($year1 + 1; $year2)
+            ) +
+            # days from month of january to month 'month2'
+            (
+                $days_of_month2[0: ($month2 - 1)] + [0] | add
+            ) +
+            # days from the 1st of the month until 'day2'
+            (
+                # [ range(1; $day2 + 1) ] | length
+                $day2
+            )
+        )
+    end
+    ;
+
+
 # ========================================================================================
 # String functions
 # @note
