@@ -43,7 +43,7 @@ def repeat_obj($n):
 #   Most of these functions use JQ native functions.
 # ========================================================================================
 
-def is_bisiest($year):
+def is_leap_year($year):
 # @input
 #   INTEGER
 # @description
@@ -71,7 +71,7 @@ def check_date($day; $month; $year):
     [ range(1; 13) ] as $months_of_year
     |
     (
-        $days_of_month | .[1] = ( if is_bisiest($year) == true then 29 else 28 end )
+        $days_of_month | .[1] = ( if is_leap_year($year) == true then 29 else 28 end )
     ) as $days_of_month
     |
     if ( $year > 0 ) then # check year
