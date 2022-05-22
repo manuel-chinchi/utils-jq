@@ -1,6 +1,6 @@
 # @file: utils-jq.jq
 # @autor: Manuel Chinchi
-# @version: 1.0.11
+# @version: 1.0.12
 # 
 # jq module with various useful functions
 
@@ -31,6 +31,37 @@ def whileex($cond; $returns):
             empty
         end;
     _whileex;
+
+#TODO use 'types' because 'type' is a reserved word.
+def filter($types):
+    whileex(. != $types and (. | type) != $types; .)
+    ;
+
+def filter($type1; $type2):
+    whileex(. != $type1 and (. | type) != $type1; .) |
+    whileex(. != $type2 and (. | type) != $type2; .)
+    ;
+
+def filter($type1; $type2; $type3):
+    whileex(. != $type1 and (. | type) != $type1; .) |
+    whileex(. != $type2 and (. | type) != $type2; .) |
+    whileex(. != $type3 and (. | type) != $type3; .)
+    ;
+
+def filter($type1; $type2; $type3; $type4):
+    whileex(. != $type1 and (. | type) != $type1; .) |
+    whileex(. != $type2 and (. | type) != $type2; .) |
+    whileex(. != $type3 and (. | type) != $type3; .) |
+    whileex(. != $type4 and (. | type) != $type4; .)
+    ;
+
+def filter($type1; $type2; $type3; $type4; $type5):
+    whileex(. != $type1 and (. | type) != $type1; .) |
+    whileex(. != $type2 and (. | type) != $type2; .) |
+    whileex(. != $type3 and (. | type) != $type3; .) |
+    whileex(. != $type4 and (. | type) != $type4; .) |
+    whileex(. != $type5 and (. | type) != $type5; .)
+    ;
 
 # ----------------------------------------------------------------------------------------
 # @public Repeat an OBJECT an amount of times indicated by $n and returns a LIST (plain) with the number of total objects. 
