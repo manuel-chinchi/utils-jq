@@ -3,6 +3,20 @@
 #   the Readme.md first
 # - All functions are commented to facilitate their modification if required
 
+# ========================================================================================
+# Primivite functions
+#   Functions made to facilitate the reading of jq's own syntax.
+# ========================================================================================
+
+def return($v):
+    $v;
+
+def mod($n):
+    if  $n < 0 then (-1)*$n else $n end
+    ;
+
+
+
 def repeat_obj($n):
 # @input
 #   OBJECT
@@ -190,6 +204,7 @@ def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
         )
     end
     ;
+
 
 
 # ========================================================================================
