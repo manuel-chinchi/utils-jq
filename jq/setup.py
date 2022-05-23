@@ -26,7 +26,7 @@ def get_url_content(url, full_name):
     response = requests.get(url)
     if os.path.exists(full_name) == False:
         open(full_name, "wb").write(response.content)
-        print(">> Downloaded file in \"{}\"!!!".format(full_name))
+        print(">> Downloaded file in \"{}\" from {}!!!".format(full_name, url))
     else:
         print(">> File \"{}\" already exists!!!".format(full_name))
 
@@ -60,6 +60,8 @@ def add_to_path(program_path: str):
 def setup():
     mkdir(EXECUTABLE_PATH)
     get_url_content(EXECUTABLE_URL, EXECUTABLE_FULL_NAME)
+    #TODO falta chequear si ya existe la variable de usuario
+    #TODO revisar 'add_to_path', ya que setea bien el valor pero borra el PATH original al parecer 
     opt = input(">> Edit PATH enviroment system? y/n:\n")
     if opt == 'y':
         add_to_path(EXECUTABLE_PATH)
