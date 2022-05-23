@@ -9,7 +9,3 @@ copied
 
 ## About
 While working with jq i realized that there are some functions that are not built in and that is why i had to create several functions that i plan to add here as I think of them. i hope it will be useful to you and above all it will save you time like me: v.
-
-## Functions
-  * repeat($N):  
-    repeat an object N number of times.
