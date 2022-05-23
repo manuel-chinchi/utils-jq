@@ -1,12 +1,12 @@
+# Script to install jq
 # 
-# install 'pip'
-#   `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-# (in current directory of get-pip.py file)
-#   `python get-pip.py `
+#   install 'pip'
+#       `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
+#       `python get-pip.py` (in current directory of get-pip.py downloaded)
 # 
-# install 'requests'
-#   `pip instal requests`
-# 
+#   install 'requests'
+#       `pip instal requests`
+# ----------------------------------------------------------------------------------------
 
 import requests
 import os
