@@ -1,34 +1,34 @@
 # Script to install jq
 # 
-#   install 'pip'
-#       `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-#       `python get-pip.py` (in current directory of get-pip.py downloaded)
+# install 'pip'
+#   `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
+#   `python get-pip.py` (in current directory of get-pip.py downloaded)
 # 
-#   install 'requests'
-#       `pip instal requests`
+# install 'requests'
+#   `pip instal requests`
 # ----------------------------------------------------------------------------------------
 
 import requests
 import os
 
 EXECUTABLE_URL = "https://raw.githubusercontent.com/manuel-chinchi/utils-jq/dev/jq/x64/jq-1.6.exe"
-EXECUTABLE_PATH = os.path.expandvars("%userprofile%") + r"\jq"
+EXECUTABLE_PATH = os.path.expandvars("%userprofile%") + r"\.jq"
 EXECUTABLE_FULL_NAME = EXECUTABLE_PATH + r"\jq.exe"
 
 def mkdir(new_dir):
     if os.path.exists(new_dir) == False:
         os.mkdir(new_dir)
-        print("> Created new directory \"{}\" in system!!!".format(new_dir))
+        print(">> Created new directory \"{}\" in system!!!".format(new_dir))
     else:
-        print("> Directory \"{}\" already exists!!!".format(new_dir))
+        print(">> Directory \"{}\" already exists!!!".format(new_dir))
 
 def get_url_content(url, full_name):
     response = requests.get(url)
     if os.path.exists(full_name) == False:
         open(full_name, "wb").write(response.content)
-        print("> Downloaded file!!!")
+        print(">> Downloaded file in \"{}\"!!!".format(full_name))
     else:
-        print("> File \"{}\" already exists!!!".format(full_name))
+        print(">> File \"{}\" already exists!!!".format(full_name))
 
 # @author Kieran Wood
 # @ref https://stackoverflow.com/questions/63782773/how-to-modify-windows-10-path-variable-directly-from-a-python-script
@@ -55,16 +55,16 @@ def add_to_path(program_path: str):
         with open(f"{os.getenv('HOME')}/.bashrc", "a") as bash_file:  # Open bashrc file
             bash_file.write(f'\nexport PATH="{program_path}:$PATH"\n')  # Add program path to Path variable
         os.system(f". {os.getenv('HOME')}/.bashrc")  # Update bash source
-    print(f"Added {program_path} to path, please restart shell for changes to take effect")
+    # print(f"Added {program_path} to path, please restart shell for changes to take effect")
 
 def setup():
     mkdir(EXECUTABLE_PATH)
     get_url_content(EXECUTABLE_URL, EXECUTABLE_FULL_NAME)
-    opt = input("Edit PATH enviroment system? y/n:\n")
+    opt = input(">> Edit PATH enviroment system? y/n:\n")
     if opt == 'y':
         add_to_path(EXECUTABLE_PATH)
-        print("Add \"{}\" into PATH system!!!".format(EXECUTABLE_PATH))
+        print(">> Add \"{}\" into PATH system!!!".format(EXECUTABLE_PATH))
     else:
-        print("Exit")
+        print(">> Exit")
 
 setup()
