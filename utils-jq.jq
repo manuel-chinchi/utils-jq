@@ -94,6 +94,39 @@ def repeat_obj($n):
 #   Most of these functions use JQ native functions.
 # ========================================================================================
 
+def date_format($day; $month; $year):
+    "\($day)/\($month)/\($year)";
+
+def date_format($day; $month; $year; $format):
+    if $format == null then # default format d/m/yyyy
+        "\($day)/\($month)/\($year)"
+    else
+        $format | ascii_downcase |
+        if (. | index("dd")) != null then # dd..mmyyyy
+            if $day > 9 then
+                (. | gsub("dd"; "\($day)"))
+            else
+                (. |  gsub("dd"; "0\($day)"))
+            end
+        else # d..mmyyyy
+            (. | gsub("d"; "\($day)"))
+        end |
+        if (. | index("mm")) != null then # mm..yyyy
+            if $month > 9 then
+                (. | gsub("mm"; "\($month)"))
+            else
+                (. | gsub("mm"; "0\($month)"))
+            end
+        else # m..yyyy
+            (. | gsub("m"; "\($month)"))
+        end |
+        if (. | test("\\byy\\b")) == true then # search match exactly "yy" not "yyyy"
+            (. | gsub("yy"; "\($year)" | .[-2:]))
+        else # ddmm..yyyy
+            (. | gsub("yyyy"; "\($year)"))
+        end
+    end;
+
 # ----------------------------------------------------------------------------------------
 # @public Verify if a given year is leap.
 # @param {number} $year Year
