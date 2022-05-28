@@ -1,11 +1,8 @@
-# example 1: query using native jq >:v
+# get list of dates in other format
 # ----------------------------------------------------------------------------------------
-# [
-#     .Dates[] | { Date: ("\(.Day)" + "/" + "\(.Month)" + "/" + "\(.Year)") }
-# ]
-
-# example 1A: query using utils-jq module :D
-# ----------------------------------------------------------------------------------------
+include "utils-jq";
 [
-    .Dates[] | { Date: date_format(.Day; .Month; .Year; "dd/mm/yyyy") }
+    .Dates[] | date_format(.Day; .Month; .Year; "dd/mm/yyyy")
 ]
+# how run this query? (in you terminal execute the next command)
+# jq -f 'samples/dates/query.jq' samples/dates/dates.json
