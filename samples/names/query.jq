@@ -1,5 +1,9 @@
-# get names of persons (on capitalize format)
+# get list of names (on capitalize format)
 # ----------------------------------------------------------------------------------------
+include "utils-jq";
 [
-    .names[] | { name: text_format(.name + " " + .lastname; "capit") }
+    .names[] | text_format(.firstname + " " + .lastname; "capit")
 ]
+
+# how run this query? (in you terminal execute the next command)
+# jq -f 'samples/names/query.jq' samples/names/names.json
