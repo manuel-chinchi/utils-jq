@@ -1,6 +1,6 @@
 # @file: utils-jq.jq
 # @autor: Manuel Chinchi
-# @version: 1.0.12
+# @version: 1.0.22
 # 
 # jq module with various useful functions
 
