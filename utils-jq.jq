@@ -275,6 +275,28 @@ def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
 #   Most of these functions use JQ native functions.
 # ========================================================================================
 
+#TODO si la palabra lleva tilde las funciones ascii_upcase, ascii_downcase no actuan
+def text_format($text; $format):
+    if $format == "upper" then
+        $text | ascii_upcase 
+    elif $format == "lower" then
+        $text | ascii_downcase
+    elif $format == "capit" then # capitalize
+        [
+            ($text | ascii_downcase) as $text |
+            " " as $sep | # separator
+            $text/$sep |  # to matrix (strings)
+            .[]/"" |      # to matrix (chars)
+            first |= ascii_upcase # capitalize first letter
+            | add # recovery item string
+        ] | 
+        [ .[] + " " ] | # add " " in the end
+        add | # recovery original text
+        .[:-1] # ignore last character
+    else
+        $text
+    end;
+
 # ----------------------------------------------------------------------------------------
 # @public Replaces all the appearances of a subcadene on another inside an initial chain.
 # @param {string} $old_sub Old string 

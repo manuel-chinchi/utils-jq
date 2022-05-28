@@ -1,0 +1,16 @@
+{
+    "persons": [
+        {
+            "firstname": "Manuel Gómez",
+            "lastname": "Centurion"
+        },
+        {
+            "firstname": "maria",
+            "lastname": "remedios"
+        },
+        {
+            "firstname": "LEONARDO",
+            "lastname": "GABRIEL"
+        }
+    ]
+}
