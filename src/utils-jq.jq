@@ -297,6 +297,9 @@ def text_format($text; $format):
         $text
     end;
 
+def text_format($format):
+    text_format(.; $format);
+
 # ----------------------------------------------------------------------------------------
 # @public Replaces all the appearances of a subcadene on another inside an initial chain.
 # @param {string} $old_sub Old string 
