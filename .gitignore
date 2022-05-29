@@ -1,3 +1,6 @@
 # ide VSCode
 *.vscode
 *.code-workspace
+
+# 
+*.txt
