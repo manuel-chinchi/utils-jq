@@ -90,8 +90,6 @@ def repeat_obj($n):
 
 # ========================================================================================
 # Date functions
-# @note
-#   Most of these functions use JQ native functions.
 # ========================================================================================
 
 def date_format($day; $month; $year):
@@ -271,8 +269,6 @@ def days_between_dates($day1; $month1; $year1; $day2; $month2; $year2):
 
 # ========================================================================================
 # String functions
-# @note
-#   Most of these functions use JQ native functions.
 # ========================================================================================
 
 #TODO si la palabra lleva tilde las funciones ascii_upcase, ascii_downcase no actuan
