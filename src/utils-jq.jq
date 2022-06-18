@@ -340,6 +340,15 @@ def array_operation($list1; $op):
         []
     end;
 
+# ----------------------------------------------------------------------------------------
+# @public
+# @param {array} $list1 List of objects to operate
+# @param {string} $op Operation to be executed, it must be one of the following
+#   - "+" > sum of list1 plus list2
+#   - "-" > subtraction of list1 minus list2
+#   - "unique" > gets only the values that appear 1 time in the list
+#   - "repeated" > get only the values that appear more than 1 time in the list
+# @param {array} $list2 List of objects to operate (is only used if operating with + or -)
 def array_operation($list1; $op; $list2):
     ($list1 | type == "array" and $list2 | type == "array") as $valid_types
     |
