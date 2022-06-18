@@ -325,11 +325,11 @@ def array_operation($list1; $operator):
     elif $operator == "repeated" then
         # TODO resource link:
         # https://stackoverflow.com/questions/55255302/identify-and-list-all-duplicate-items-in-an-array-using-jq
-        def repeated($_list):
-            def count_items($_stream):
-                reduce $_stream as $x ({}; .[$x] += 1)
+        def repeated(_list):
+            def count_items(_stream):
+                reduce _stream as $x ({}; .[$x] += 1)
             ; # end def
-            count_items($_list | .[])
+            count_items(_list | .[])
             |
             with_entries(select(.value > 1))
             |
