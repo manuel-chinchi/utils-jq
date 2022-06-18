@@ -23,4 +23,4 @@ To start testing directly the functions of the module without giving many turns,
 ```
 jq -n -f utils-jq.jq
 ```
-You can see an example in the following ![image](src/gif/git-readme-utils-jq.gif "sample testing functions")
+You can see an example in the following ![image](src/gif/gif-readme-utils-jq-min.gif "sample testing functions")
