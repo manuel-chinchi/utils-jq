@@ -314,3 +314,47 @@ def sremove_all($sub):
 # @param {string} $sub Sub string  
 def instr($sub):
     index($sub);
+
+# ========================================================================================
+# Array functions
+# ========================================================================================
+
+def array_operation($list1; $op):
+    if $op == "unique" then
+        $list1 | unique
+    elif $op == "repeated" then
+        # TODO resource link:
+        # https://stackoverflow.com/questions/55255302/identify-and-list-all-duplicate-items-in-an-array-using-jq
+        def repeated($_list):
+            def count_items($_stream):
+                reduce $_stream as $x ({}; .[$x] += 1)
+            ; # end def
+            count_items($_list | .[])
+            |
+            with_entries(select(.value > 1))
+            |
+            keys_unsorted
+        ; # end def
+        repeated($list1)
+    else
+        []
+    end;
+
+def array_operation($list1; $op; $list2):
+    ($list1 | type == "array" and $list2 | type == "array") as $valid_types
+    |
+    if $op == "-" then
+        try $valid_types
+        catch error("The \"+\" operator only accepts arrays as 1st and 3rd parameter.")
+        |
+        [$list1 | .[]] - [$list2 | .[]]
+    elif $op == "+" then
+        try $valid_types
+        catch error("The \"-\" operator only accepts arrays as 1st and 3rd parameter..")
+        |
+        [$list1 | .[]] + [$list2 | .[]]
+    elif $op == "unique" or $op == "repeated" then
+        array_operation($list1; $op)
+    else
+        []
+    end;
