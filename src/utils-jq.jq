@@ -319,10 +319,10 @@ def instr($sub):
 # Array functions
 # ========================================================================================
 
-def array_operation($list1; $op):
-    if $op == "unique" then
+def array_operation($list1; $operator):
+    if $operator == "unique" then
         $list1 | unique
-    elif $op == "repeated" then
+    elif $operator == "repeated" then
         # TODO resource link:
         # https://stackoverflow.com/questions/55255302/identify-and-list-all-duplicate-items-in-an-array-using-jq
         def repeated($_list):
@@ -343,27 +343,27 @@ def array_operation($list1; $op):
 # ----------------------------------------------------------------------------------------
 # @public Performs a specified operation on one or two arrays
 # @param {array} $list1 List of objects to operate
-# @param {string} $op Operation to be executed, it must be one of the following
-#   - "+" > sum of list1 plus list2
-#   - "-" > subtraction of list1 minus list2
-#   - "unique" > gets only the values that appear 1 time in the list
-#   - "repeated" > get only the values that appear more than 1 time in the list
+# @param {string} $operator Operation to be executed, it must be one of the following
+#   - "+"        > Sum of list1 plus list2
+#   - "-"        > Subtraction of list1 minus list2
+#   - "unique"   > Gets only the values that appear 1 time in the list
+#   - "repeated" > Get only the values that appear more than 1 time in the list
 # @param {array} $list2 List of objects to operate (is only used if operating with + or -)
-def array_operation($list1; $op; $list2):
+def array_operation($list1; $operator; $list2):
     ($list1 | type == "array" and $list2 | type == "array") as $valid_types
     |
-    if $op == "-" then
+    if $operator == "-" then
         try $valid_types
         catch error("The \"+\" operator only accepts arrays as 1st and 3rd parameter.")
         |
         [$list1 | .[]] - [$list2 | .[]]
-    elif $op == "+" then
+    elif $operator == "+" then
         try $valid_types
         catch error("The \"-\" operator only accepts arrays as 1st and 3rd parameter..")
         |
         [$list1 | .[]] + [$list2 | .[]]
-    elif $op == "unique" or $op == "repeated" then
-        array_operation($list1; $op)
+    elif $operator == "unique" or $operator == "repeated" then
+        array_operation($list1; $operator)
     else
         []
     end;
