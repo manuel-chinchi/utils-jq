@@ -17,3 +17,10 @@ copied
 
 ## About
 While working with jq i realized that there are some functions that are not built in and that is why i had to create several functions that i plan to add here as I think of them. i hope it will be useful to you and above all it will save you time like me: v.
+
+## How to start testing the functions?
+To start testing directly the functions of the module without giving many turns, the most convenient is to execute jq from the terminal in this way:
+```
+jq -n -f utils-jq.jq
+```
+You can see an example in the following [image](src/gif/git-readme-utils-jq.gif)
