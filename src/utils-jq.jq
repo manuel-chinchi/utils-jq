@@ -341,7 +341,7 @@ def array_operation($list1; $operator):
     end;
 
 # ----------------------------------------------------------------------------------------
-# @public Performs a specified operation on one or two arrays
+# @public Performs a specified operation on one or between two arrays
 # @param {array} $list1 List of objects to operate
 # @param {string} $operator Operation to be executed, it must be one of the following
 #   - "+"        > Sum of list1 plus list2
