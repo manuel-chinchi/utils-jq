@@ -67,7 +67,7 @@ def add_to_path(program_path: str):
 def setup():
     print("+--------------------------------+")
     print("|                                |")
-    print("|   Setup installer for JQ 1.6   |")
+    print("|        jq 1.6 installer        |")
     print("|                                |")
     print("+--------------------------------+")
     print("")
