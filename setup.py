@@ -12,28 +12,30 @@ import requests
 import os
 
 DEFAULT_DIR = os.path.expandvars("%userprofile%") + r"\.jq"
+LIBRARY_URL = "https://raw.githubusercontent.com/manuel-chinchi/utils-jq/dev/src/utils-jq.jq"
 
 def get_url_content(url, full_name):
     response = requests.get(url)
-    if os.path.exists(full_name) == False:
-        open(full_name, "wb").write(response.content)
+    if os.path.exists(DEFAULT_DIR + r"\utils-jq.jq") == False:
+        open(DEFAULT_DIR + r"\utils-jq.jq", "wb").write(response.content)
         print(">> File \"utils-jq.jq\" downloaded in directory \"{}\"!!!".format(DEFAULT_DIR))
     else:
         print(">> EXCEPTION: The file \"utils-jq.jq\" already exists in \"{}\"!!!".format(DEFAULT_DIR))
 
-
 def setup():
-	print("+--------------------------------+")
+    print("+--------------------------------+")
     print("|                                |")
-    print("|    Setup installer utils-jq    |")
+    print("|       utils-jq installer       |")
     print("|                                |")
     print("+--------------------------------+")
     print("")
     opt = input(\
-    	"The following script will install the \"utils-jq\" library on your system from"\
-    	"---REPO--- do you want to continue (y/n)"\
-    	"\n"
-    	)
+        "The following script will install the \"utils-jq\" library on your system from" +
+        " \"{}\" do you want to continue (y/n)".format(LIBRARY_URL) +
+        "\n"
+        )
     if opt.lower() == 'y':
-    	get_url_content("---REPO---", DEFAULT_DIR)
+        get_url_content(LIBRARY_URL, DEFAULT_DIR)
 
+
+setup()
