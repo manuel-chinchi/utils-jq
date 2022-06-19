@@ -43,14 +43,6 @@ def add_to_path(program_path: str):
                 existing_path_value = winreg.EnumValue(key, 3)[1] # Grab the current path value
                 new_path_value = existing_path_value + ";" + program_path + ";" # Takes the current path value and appends the new program path
                 winreg.SetValueEx(key, "PATH", 0, winreg.REG_EXPAND_SZ, new_path_value) # Updated the path with the updated path
-
-            # Tell other processes to update their environment
-            HWND_BROADCAST = 0xFFFF
-            WM_SETTINGCHANGE = 0x1A
-            SMTO_ABORTIFHUNG = 0x0002
-            result = ctypes.c_long()
-            SendMessageTimeoutW = ctypes.windll.user32.SendMessageTimeoutW
-            SendMessageTimeoutW(HWND_BROADCAST, WM_SETTINGCHANGE, 0, u"Environment", SMTO_ABORTIFHUNG, 5000, ctypes.byref(result),) 
     else: # If system is *nix
         with open(f"{os.getenv('HOME')}/.bashrc", "a") as bash_file:  # Open bashrc file
             bash_file.write(f'\nexport PATH="{program_path}:$PATH"\n')  # Add program path to Path variable
