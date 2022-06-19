@@ -18,7 +18,7 @@ EXECUTABLE_FULL_NAME = EXECUTABLE_PATH + r"\jq.exe"
 def mkdir(new_dir):
     if os.path.exists(new_dir) == False:
         os.mkdir(new_dir)
-        print(">> New directory (\"{}\") created in you system!!!".format(new_dir))
+        print(">> New directory \"{}\" created in you system!!!".format(new_dir))
     else:
         print(">> EXCEPTION: The directory \"{}\" already exists!!!".format(new_dir))
 
@@ -26,7 +26,7 @@ def get_url_content(url, full_name):
     response = requests.get(url)
     if os.path.exists(full_name) == False:
         open(full_name, "wb").write(response.content)
-        print(">> File \"jq.exe\" downloaded in directory (\"{}\")!!!".format(EXECUTABLE_PATH))
+        print(">> File \"jq.exe\" downloaded in directory \"{}\"!!!".format(EXECUTABLE_PATH))
     else:
         print(">> EXCEPTION: The file \"jq.exe\" already exists in \"{}\"!!!".format(EXECUTABLE_PATH))
 
