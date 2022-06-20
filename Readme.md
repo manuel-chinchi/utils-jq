@@ -16,11 +16,21 @@ So in the file whose path would be `$HOME/.jq` the content of the file `utils-jq
 copied
 
 ## About
-While working with jq i realized that there are some functions that are not built in and that is why i had to create several functions that i plan to add here as I think of them. i hope it will be useful to you and above all it will save you time like me: v.
+While working with jq i realized that there are some functions that are not built in and 
+that is why i had to create several functions that i plan to add here as I think of them. 
+i hope it will be useful to you and above all it will save you time like me: v.
 
 ## How to start testing the functions?
-To start testing directly the functions of the module without giving many turns, the most convenient is to execute jq from the terminal in this way:
+If you have already run the [installer](https://github.com/manuel-chinchi/utils-jq/blob/dev/jq/setup.py) 
+for jq.exe and also the [installer](https://github.com/manuel-chinchi/utils-jq/blob/dev/setup.py) 
+for the utils-jq.jq library, then you only have to test that everything is working by 
+opening a terminal and running the following command
+```bash
+jq -n "include \"utils-jq\"; \"hello world\" | text_format(\"capit\")"
 ```
-jq -n -f utils-jq.jq
+You should see an output similar to this
 ```
-You can see an example in the following ![image](src/gif/gif-readme-utils-jq-min.gif "sample testing functions")
+Hello World
+```
+You can be guided by the following animation 
+![jq](src/gif/utilsjq-window-test.gif "utils-jq window test")
