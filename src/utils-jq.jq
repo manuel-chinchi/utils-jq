@@ -1,6 +1,6 @@
 # @file: utils-jq.jq
 # @autor: Manuel Chinchi
-# @version: 1.0.22
+# @version: 1.1.22
 # 
 # jq module with various useful functions
 
@@ -8,6 +8,9 @@
 # - In order to use the functions and call them in the terminal make sure you read 
 #   the Readme.md first
 # - All functions are commented to facilitate their modification if required
+
+def libversion():
+    "@v1.1.22 alpha"
 
 # ========================================================================================
 # Primivite functions
