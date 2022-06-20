@@ -1,15 +1,40 @@
-# Utils for jq
-Useful functions to use in jq.
+# utils-jq.jq
 
-## How to use?
-To have jq functions directly when you type them in the terminal, make sure you have
-the tool installed, and then create a .jq file in the $HOME directory.
-So in the file whose path would be `$HOME/.jq` the content of the file `utils-jq.jq` is 
-copied
+Useful functions for jq
 
-## About
-While working with jq i realized that there are some functions that are not built in and that is why i had to create several functions that i plan to add here as I think of them. i hope it will be useful to you and above all it will save you time like me: v.
+## What is it JQ?
 
-## Functions
-  * repeat($N):  
-    repeat an object N number of times.
+[jq](https://stedolan.github.io/jq/) is a great tool for query processing on JSON files, 
+the [utils-jq.jq](https://github.com/manuel-chinchi/utils-jq/blob/master/utils-jq.jq) file
+found in this repository contains several functions in `jq` syntax that can be used within 
+your custom queries.
+
+## How do I install this?
+Very easy, just follow these steps  
+  1. First, you have to install the jq.exe binary on your system, for that you have to 
+    download the [setup.py](https://raw.githubusercontent.com/manuel-chinchi/utils-jq/pre-release/jq/setup.py)
+    file and run it on your computer.
+    If you want you can check that the installation has been done correctly by opening a 
+    terminal and executing `jq --version`, you should see an output similar to this:
+    ```
+    jq-1.6
+    ```
+  2. Now you must download and run the [setup.py](https://raw.githubusercontent.com/manuel-chinchi/utils-jq/pre-release/setup.py) 
+    file to install the [utils-jq.jq](https://raw.githubusercontent.com/manuel-chinchi/utils-jq/pre-release/src/utils-jq.jq) file itself.
+  3. You should now be able to test the functions of the library, see the following section below
+    **"How to start testing the functions?"**
+
+## How to start testing the functions?
+If you have already run the [installer](https://github.com/manuel-chinchi/utils-jq/blob/dev/jq/setup.py) 
+for jq.exe and also the [installer](https://github.com/manuel-chinchi/utils-jq/blob/dev/setup.py) 
+for the utils-jq.jq library, then you only have to test that everything is working by 
+opening a terminal and running the following command
+```bash
+jq -n "include \"utils-jq\"; \"hello world\" | text_format(\"capit\")"
+```
+You should see an output similar to this
+```
+Hello World
+```
+You can be guided by the following animation 
+![jq](src/gif/utilsjq-window-test.gif "utils-jq window test")

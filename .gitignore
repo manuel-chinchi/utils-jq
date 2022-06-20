@@ -1,0 +1,11 @@
+# ide VSCode
+*.vscode
+*.code-workspace
+
+# temporal files and folders
+*.txt
+/TMP/
+
+# ide sublime
+*.sublime-project
+*.sublime-workspace
