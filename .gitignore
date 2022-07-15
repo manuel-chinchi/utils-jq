@@ -9,3 +9,6 @@
 # ide sublime
 *.sublime-project
 *.sublime-workspace
+
+# Python virtual env
+/env/
